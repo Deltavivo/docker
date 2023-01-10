@@ -1,0 +1,23 @@
+version: '3'
+
+volumes:
+  database-data:
+    driver: local
+  postgres-data:
+    driver: local
+
+services:
+  postgres-compose:
+    container_name: postgresql
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "123456"
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./PostgreSQL:/var/lib/postgresql/data 
+    networks:
+      - postgres-compose-network 
+networks:
+  postgres-compose-network:
+    driver: bridge
